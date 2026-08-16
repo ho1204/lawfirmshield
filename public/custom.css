@@ -1,0 +1,18 @@
+.intro-grid{grid-template-columns:.95fr .7fr 1fr;gap:5vw;align-items:start}
+.attorney-photo{margin:0;position:relative}
+.attorney-photo:before{content:'';position:absolute;inset:18px -18px -18px 18px;border:1px solid var(--gold);z-index:0}
+.attorney-photo img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;position:relative;z-index:1;filter:saturate(.86)}
+.attorney-photo figcaption{position:relative;z-index:2;background:var(--navy);color:white;padding:16px 20px;display:flex;align-items:center;gap:12px}
+.attorney-photo figcaption strong{font-family:'Noto Serif KR';font-size:19px}
+.attorney-photo figcaption span{color:var(--gold);font-size:11px}
+.contact-card .contact-email{font-family:'Noto Sans KR';font-size:clamp(17px,2vw,28px);word-break:break-all}
+.contact-card button.btn{border-radius:0}
+.consult-panel{width:min(680px,100%)}
+.consult-intro{color:var(--muted);font-size:14px;margin:-20px 0 30px}
+.consult-form{clear:both}
+.consult-form label{display:block;font-size:13px;font-weight:600;margin:18px 0}
+.consult-form input,.consult-form textarea{width:100%;display:block;margin-top:7px;padding:15px;border:1px solid var(--line);background:white;font:inherit;resize:vertical}
+.consult-form input:focus,.consult-form textarea:focus{outline:1px solid var(--gold);border-color:var(--gold)}
+.consult-form .btn{width:100%;border:0}
+.privacy-note{font-size:11px;color:#858b92;margin:18px 0}
+@media(max-width:900px){.intro-grid{grid-template-columns:1fr}.attorney-photo{width:min(360px,calc(100% - 18px));margin:10px auto 35px}}
