@@ -15,6 +15,8 @@
 .consult-form input:focus,.consult-form textarea:focus{outline:1px solid var(--gold);border-color:var(--gold)}
 .consult-form .btn{width:100%;border:0}
 .privacy-note{font-size:11px;color:#858b92;margin:18px 0}
+.header .nav{gap:clamp(14px,1.7vw,30px);font-size:13px}
+.header .brand{min-width:220px}
 .attorney-profile{display:grid;grid-template-columns:1fr 1.45fr;gap:6vw;margin-top:85px;padding:52px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .profile-column{display:grid;grid-template-columns:110px 1fr;gap:28px}
 .profile-heading span{display:block;color:var(--gold);font-size:9px;font-weight:700;letter-spacing:.18em;margin-bottom:4px}
@@ -23,6 +25,9 @@
 .profile-column li{position:relative;padding:8px 0 8px 17px;color:#56606c;font-size:14px;line-height:1.65}
 .profile-column li:before{content:'';position:absolute;left:0;top:18px;width:5px;height:5px;border:1px solid var(--gold);transform:rotate(45deg)}
 @media(max-width:900px){
+  .header .nav{position:absolute;top:100%;left:0;right:0;z-index:20;flex-direction:column;align-items:stretch;gap:0;padding:10px 22px 18px;background:rgba(15,31,53,.98);border-top:1px solid rgba(255,255,255,.1);box-shadow:0 14px 25px rgba(0,0,0,.16)}
+  .header .nav a{padding:12px 4px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .header .nav a:last-child{border-bottom:0}
   .intro-grid{grid-template-columns:1fr}
   .attorney-photo{width:min(360px,calc(100% - 18px));margin:10px auto 35px}
   .attorney-profile{grid-template-columns:1fr;gap:42px;margin-top:60px;padding:40px 0}

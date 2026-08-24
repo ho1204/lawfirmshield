@@ -112,14 +112,19 @@ async function api(req, res, url) {
   json(res, 404, { message: '요청을 찾을 수 없습니다.' });
 }
 
-const mime = { '.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'application/javascript; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.ico':'image/x-icon' };
+const mime = { '.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'application/javascript; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.ico':'image/x-icon','.xml':'application/xml; charset=utf-8','.txt':'text/plain; charset=utf-8' };
 const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, `http://${req.headers.host}`);
     if (url.pathname.startsWith('/api/')) return await api(req, res, url);
     let requested = url.pathname === '/' ? '/index.html' : url.pathname;
     let file = path.resolve(PUBLIC, '.' + requested);
-    if (!file.startsWith(path.resolve(PUBLIC)) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) file = path.join(PUBLIC, 'index.html');
+    const publicRoot = path.resolve(PUBLIC);
+    if (!file.startsWith(publicRoot)) file = path.join(PUBLIC, 'index.html');
+    else if (fs.existsSync(file) && fs.statSync(file).isDirectory()) {
+      const directoryIndex = path.join(file, 'index.html');
+      file = fs.existsSync(directoryIndex) ? directoryIndex : path.join(PUBLIC, 'index.html');
+    } else if (!fs.existsSync(file)) file = path.join(PUBLIC, 'index.html');
     res.writeHead(200, { 'Content-Type': mime[path.extname(file)] || 'application/octet-stream', 'X-Content-Type-Options': 'nosniff' });
     fs.createReadStream(file).pipe(res);
   } catch (error) { console.error(error); json(res, 500, { message: '서버 오류가 발생했습니다.' }); }
